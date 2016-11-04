@@ -1,6 +1,7 @@
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
+
 " Normal backspace and tab 
 set backspace=indent,eol,start
 set complete-=i
