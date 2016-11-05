@@ -8,6 +8,7 @@ set complete-=i
 set autoindent
 " >> will use spaces, pressing TAB will insert a tab
 set tabstop=8
+set expandtab
 set shiftwidth=4
 
 " No wrapping
