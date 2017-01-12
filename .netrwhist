@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/viraj'
+let g:netrw_dirhist_2='/Volumes/viraj.sgl.dev.int-1/webapp/sgl/modules/rxf/tests/support/integration'
+let g:netrw_dirhist_3='/Volumes/viraj.sgl.dev.int-1/webapp/sgl/modules/rxf/tests/support'
+let g:netrw_dirhist_4='/Volumes/viraj.sgl.dev.int-1/webapp/sgl/modules/rxf/tests'

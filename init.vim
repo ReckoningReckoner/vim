@@ -7,9 +7,11 @@ set backspace=indent,eol,start
 set complete-=i
 set autoindent
 " >> will use spaces, pressing TAB will insert a tab
-set tabstop=8
+set tabstop=4
 set expandtab
 set shiftwidth=4
+
+colorscheme evening
 
 " No wrapping
 set nowrap
@@ -27,8 +29,12 @@ set number
 set incsearch
 set cursorline
 
-" Autoupdate files
-set autoread
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
+
+set path+=**
+set wildmenu
 
 " 80 characters
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -36,13 +42,10 @@ match OverLength /\%81v.\+/
 
 " NERDTree
 nmap ,l :NERDTreeToggle<CR>
+nmap ,r :NERDTreeFind<CR>
 
 "Tagbar
 nmap ,t :Tagbar<CR>
-
-" Set fzf
-set rtp+=/usr/local/opt/fzf
-nmap ,p :FZF<CR>
 
 " ALE
 let g:ale_sign_column_always = 1
@@ -57,4 +60,3 @@ set list
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_python_binary_path = 'python3'
-nmap ,g :YcmCompleter GoTo<CR>
