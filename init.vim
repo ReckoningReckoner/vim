@@ -33,6 +33,7 @@ set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 set undodir=~/.vim/undo//
 
+set autochdir
 set path+=**
 set wildmenu
 
@@ -40,6 +41,18 @@ set wildmenu
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
+" Remove whitespace
+command RemoveWhitespace %s/\s\+$//e
+
+" Filetype specific
+" LaTeX
+autocmd FileType tex set makeprg=pdflatex\ %\ &&\ open\ %:r.pdf
+autocmd FileType tex set spell
+autocmd FileType tex set tw=80
+autocmd FileType tex :command Bib !pdflatex % && bibtex %:r && pdflatex % && pdflatex %
+
+" Python
+autocmd FileType python set makeprg=python3\ %
 " NERDTree
 nmap ,l :NERDTreeToggle<CR>
 nmap ,r :NERDTreeFind<CR>
@@ -58,5 +71,10 @@ set list
 
 "YCM
 let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-let g:ycm_python_binary_path = 'python3'
+let g:ycm_python_binary_path = '/usr/local/bin/python3'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+
+" Codi
+let g:codi#interpreters = {'python': {'bin': '/usr/local/bin/python3'}}
+let g:codi#rightalign = 0
+execute pathogen#infect()
