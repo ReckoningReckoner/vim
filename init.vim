@@ -33,9 +33,11 @@ set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 set undodir=~/.vim/undo//
 
+" Automatically update files
+set autoread
+
 set autochdir
 set path+=**
-set wildmenu
 
 " 80 characters
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -46,13 +48,19 @@ command RemoveWhitespace %s/\s\+$//e
 
 " Filetype specific
 " LaTeX
+let g:tex_flavor='latex'
 autocmd FileType tex set makeprg=pdflatex\ %\ &&\ open\ %:r.pdf
 autocmd FileType tex set spell
 autocmd FileType tex set tw=80
+autocmd FileType tex let g:AutoPairs = {'(':')','[':']','{':'}',"'":"'",'"':'"','$':'$'}
 autocmd FileType tex :command Bib !pdflatex % && bibtex %:r && pdflatex % && pdflatex %
 
 " Python
 autocmd FileType python set makeprg=python3\ %
+
+" Matlab
+autocmd FileType matlab setlocal commentstring=\%\ %s
+
 " NERDTree
 nmap ,l :NERDTreeToggle<CR>
 nmap ,r :NERDTreeFind<CR>
