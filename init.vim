@@ -56,8 +56,6 @@ nmap ,t :Tagbar<CR>
 
 " ALE
 let g:ale_sign_column_always = 1
-let g:al_sign_error = '!'
-let g:al_sign_error = '>'
 
 " Whitespace characters
 set listchars=tab:⇥\ 
@@ -66,7 +64,7 @@ set list
 "YCM
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_python_binary_path = '/usr/local/bin/python3'
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 :command Go YcmCompleter GoTo
 
 " Codi
@@ -90,11 +88,6 @@ autocmd FileType python set makeprg=python3\ %
 autocmd FileType matlab setlocal commentstring=\%\ %s
 
 """"""""""""""" Project Specific
-if getcwd() == "/Users/viraj/C/Thermocycler/src" || getcwd() == "/Users/viraj/C/Thermocycler/src/src"
-    let $CPATH = system('cat /Users/viraj/C/Thermocycler/src/.cpppath')
-    let g:ale_cpp_gcc_executable = '/Users/viraj/.platformio/packages/toolchain-atmelavr/bin/avr-g++'
-    let g:ale_cpp_gcc_options = '-fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -g -Os -Wall -ffunction-sections -fdata-sections -flto -mmcu=atmega2560 -DF_CPU=16000000L -DPLATFORMIO=30201 -DARDUINO_ARCH_AVR -DARDUINO_AVR_MEGA2560 -DARDUINO=10617'
-    let g:ale_cpp_clang_executable = g:ale_cpp_gcc_executable
-    let g:ale_cpp_clang_options = g:ale_cpp_gcc_options
-    let $F_CPU = '16000000L'
+if isdirectory(".lvim")
+    source .lvim/vimrc
 endif
