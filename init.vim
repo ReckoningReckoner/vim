@@ -1,4 +1,17 @@
-execute pathogen#infect()
+" execute pathogen#infect()
+call plug#begin('~/.vim/plugins')
+Plug 'w0rp/ale'
+Plug 'jiangmiao/auto-pairs'
+Plug 'metakirby5/codi.vim'
+Plug 'maralla/completor.vim'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'majutsushi/tagbar', {'on': 'Tagbar'}
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'ludovicchabant/vim-gutentags'
+
+call plug#end()
+
 syntax on
 filetype plugin indent on
 
@@ -61,16 +74,17 @@ let g:ale_sign_column_always = 1
 set listchars=tab:⇥\ 
 set list
 
-"YCM
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_python_binary_path = '/usr/local/bin/python3'
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-:command Go YcmCompleter GoTo
-
 " Codi
 let g:codi#interpreters = {'python': {'bin': '/usr/local/bin/python3'}}
 let g:codi#rightalign = 0
 execute pathogen#infect()
+
+"Complete
+let g:completor_python_binary = '/usr/local/bin/python3'
+let g:completor_clang_binary = '/usr/bin/clang'
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
 """""""""""""" Filetype specific
 " LaTeX
