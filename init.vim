@@ -1,21 +1,50 @@
 " execute pathogen#infect()
 call plug#begin('~/.vim/plugins')
-Plug 'w0rp/ale'
-Plug 'jiangmiao/auto-pairs'
-Plug 'metakirby5/codi.vim'
-Plug 'maralla/completor.vim'
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-Plug 'majutsushi/tagbar', {'on': 'Tagbar'}
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'ludovicchabant/vim-gutentags'
+    " ALE
+    Plug 'w0rp/ale'
+    let g:ale_sign_column_always = 1
 
+    Plug 'jiangmiao/auto-pairs'
+
+    " Codi
+    Plug 'metakirby5/codi.vim'
+    let g:codi#interpreters = {'python': {'bin': '/usr/local/bin/python3'}}
+    let g:codi#rightalign = 0
+
+    "Complete
+    Plug 'maralla/completor.vim'
+    let g:completor_python_binary = '/usr/local/bin/python3'
+    let g:completor_clang_binary = '/usr/bin/clang'
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+
+    " NERDTree
+    Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+    Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
+    nmap ,l :NERDTreeToggle<CR>
+    nmap ,r :NERDTreeFind<CR>
+
+    "Tagbar
+    Plug 'majutsushi/tagbar', {'on': 'Tagbar'}
+    nmap ,t :Tagbar<CR>
+
+    Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-surround'
+    Plug 'ludovicchabant/vim-gutentags'
+
+    "Ctrl-P
+    Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 syntax on
 filetype plugin indent on
 
-" Normal backspace and tab 
+" Whitespace characters
+set listchars=tab:⇥\
+set list
+
+" Normal backspace and tab
 set backspace=indent,eol,start
 set complete-=i
 set autoindent
@@ -23,7 +52,6 @@ set autoindent
 set tabstop=4
 set expandtab
 set shiftwidth=4
-
 
 " No wrapping
 set nowrap
@@ -59,32 +87,6 @@ match OverLength /\%81v.\+/
 " Remove whitespace
 command RemoveWhitespace %s/\s\+$//e
 
-"""""""""" Plugins
-" NERDTree
-nmap ,l :NERDTreeToggle<CR>
-nmap ,r :NERDTreeFind<CR>
-
-"Tagbar
-nmap ,t :Tagbar<CR>
-
-" ALE
-let g:ale_sign_column_always = 1
-
-" Whitespace characters
-set listchars=tab:⇥\ 
-set list
-
-" Codi
-let g:codi#interpreters = {'python': {'bin': '/usr/local/bin/python3'}}
-let g:codi#rightalign = 0
-execute pathogen#infect()
-
-"Complete
-let g:completor_python_binary = '/usr/local/bin/python3'
-let g:completor_clang_binary = '/usr/bin/clang'
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
 """""""""""""" Filetype specific
 " LaTeX
