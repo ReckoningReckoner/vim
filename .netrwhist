@@ -1,8 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/Users/viraj'
 let g:netrw_dirhist_2='/Volumes/viraj.sgl.dev.int-1/webapp/sgl/modules/rxf/tests/support/integration'
 let g:netrw_dirhist_3='/Volumes/viraj.sgl.dev.int-1/webapp/sgl/modules/rxf/tests/support'
 let g:netrw_dirhist_4='/Volumes/viraj.sgl.dev.int-1/webapp/sgl/modules/rxf/tests'
 let g:netrw_dirhist_5='/Users/viraj/.vim/autoload'
 let g:netrw_dirhist_6='/Users/viraj/.vim/bundle/nerdtree'
+let g:netrw_dirhist_7='/Users/viraj/.vim/plugins/vim-snippets'
+let g:netrw_dirhist_8='/Users/viraj/.vim/plugins/vim-snippets/plugin'
+let g:netrw_dirhist_9='/Users/viraj/.vim/plugins/vim-snippets'

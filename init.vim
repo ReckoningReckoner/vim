@@ -30,11 +30,16 @@ call plug#begin('~/.vim/plugins')
     nmap ,t :Tagbar<CR>
 
     Plug 'tpope/vim-commentary'
-    Plug 'tpope/vim-surround'
     Plug 'ludovicchabant/vim-gutentags'
 
-    "Ctrl-P
-    Plug 'ctrlpvim/ctrlp.vim'
+    "Ulti-snips
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
+    let g:UltiSnipsExpandTrigger="<s-tab>"
+    let g:UltiSnipsJumpForwardTrigger="<s-tab>"
+
+    " Goyo
+    Plug 'junegunn/goyo.vim'
 call plug#end()
 
 syntax on
