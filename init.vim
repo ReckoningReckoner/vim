@@ -4,24 +4,30 @@ call plug#begin('~/.vim/plugins')
     Plug 'w0rp/ale'
     let g:ale_sign_column_always = 1
 
+    " Auto pairs and surround
     Plug 'jiangmiao/auto-pairs'
+    Plug 'tpope/vim-surround'
 
     " Codi
     Plug 'metakirby5/codi.vim'
     let g:codi#interpreters = {'python': {'bin': '/usr/local/bin/python3'}}
     let g:codi#rightalign = 0
 
-    "Complete
-    Plug 'maralla/completor.vim'
-    let g:completor_python_binary = '/usr/local/bin/python3'
-    let g:completor_clang_binary = '/usr/bin/clang'
-    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-    inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+    " CtrlP
+    Plug 'kien/ctrlp.vim'
+
+    " Javascript
+    Plug 'pangloss/vim-javascript'
+    Plug 'vim-scripts/JavaScript-Indent'
+    Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
+    nmap <c-]> :TernDef<cr>
+    nmap <c-^> :TernRefs<cr>
+
+    " Fugitive
+    Plug 'tpope/vim-fugitive'
 
     " NERDTree
     Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-    Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
     nmap ,l :NERDTreeToggle<CR>
     nmap ,r :NERDTreeFind<CR>
 
@@ -29,8 +35,12 @@ call plug#begin('~/.vim/plugins')
     Plug 'majutsushi/tagbar', {'on': 'Tagbar'}
     nmap ,t :Tagbar<CR>
 
+    " Tags and commentary
     Plug 'tpope/vim-commentary'
-    Plug 'ludovicchabant/vim-gutentags'
+
+    " YouCompleteMe
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer --clang-completer' }
+    let g:ycm_global_ycm_extra_conf = "~/.vim/plugins/YouCompleteMe/third_party/ycmd/cpp/.ycm_extra_conf.py"
 
     "Ulti-snips
     Plug 'SirVer/ultisnips'
@@ -38,8 +48,14 @@ call plug#begin('~/.vim/plugins')
     let g:UltiSnipsExpandTrigger="<s-tab>"
     let g:UltiSnipsJumpForwardTrigger="<s-tab>"
 
-    " Goyo
-    Plug 'junegunn/goyo.vim'
+    Plug 'metakirby5/codi.vim'
+    let g:codi#interpreters = {
+                \ 'python': {
+                \ 'bin': 'python3',
+                \ 'prompt': '^\(>>>\|\.\.\.\) ',
+                \ },
+                \ }
+
 call plug#end()
 
 syntax on
@@ -54,12 +70,13 @@ set backspace=indent,eol,start
 set complete-=i
 set autoindent
 " >> will use spaces, pressing TAB will insert a tab
-set tabstop=4
 set expandtab
 set shiftwidth=4
 
-" No wrapping
-set nowrap
+" No better long line wrapping
+set wrap
+set linebreak
+set showbreak=\ \ \ \ 
 
 " Ruler
 set ruler
@@ -81,16 +98,14 @@ set undodir=~/.vim/undo//
 " Automatically update files
 set autoread
 
-set autochdir
 set path-=/usr/include
-set path+=$PWD/**
 
 " 80 characters
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
 " Remove whitespace
-command RemoveWhitespace %s/\s\+$//e
+command! RemoveWhitespace %s/\s\+$//e
 
 
 """""""""""""" Filetype specific
@@ -109,6 +124,6 @@ autocmd FileType python set makeprg=python3\ %
 autocmd FileType matlab setlocal commentstring=\%\ %s
 
 """"""""""""""" Project Specific
-if isdirectory(".lvim")
-    source .lvim/vimrc
+if filereadable(".lvimrc")
+    source .lvimrc
 endif
