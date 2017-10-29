@@ -1,4 +1,3 @@
-" execute pathogen#infect()
 call plug#begin('~/.vim/plugins')
     " ALE
     Plug 'w0rp/ale'
