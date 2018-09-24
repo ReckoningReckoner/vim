@@ -3,58 +3,31 @@ call plug#begin('~/.vim/plugins')
     Plug 'w0rp/ale'
     let g:ale_sign_column_always = 1
 
-    " Auto pairs and surround
+    " Auto pairs
     Plug 'jiangmiao/auto-pairs'
-    Plug 'tpope/vim-surround'
 
-    " Codi
-    Plug 'metakirby5/codi.vim'
-    let g:codi#interpreters = {'python': {'bin': '/usr/local/bin/python3'}}
-    let g:codi#rightalign = 0
+    " Surround
+    Plug 'tpope/vim-surround'
 
     " CtrlP
     Plug 'kien/ctrlp.vim'
-
-    " Javascript
-    Plug 'pangloss/vim-javascript'
-    Plug 'vim-scripts/JavaScript-Indent'
-    Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
-    nmap <c-]> :TernDef<cr>
-    nmap <c-^> :TernRefs<cr>
-
-    " Fugitive
-    Plug 'tpope/vim-fugitive'
 
     " NERDTree
     Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
     nmap ,l :NERDTreeToggle<CR>
     nmap ,r :NERDTreeFind<CR>
 
-    "Tagbar
-    Plug 'majutsushi/tagbar', {'on': 'Tagbar'}
-    nmap ,t :Tagbar<CR>
-
     " Tags and commentary
     Plug 'tpope/vim-commentary'
 
-    " YouCompleteMe
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer --clang-completer' }
-    let g:ycm_global_ycm_extra_conf = "~/.vim/plugins/YouCompleteMe/third_party/ycmd/cpp/.ycm_extra_conf.py"
-
-    "Ulti-snips
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets'
-    let g:UltiSnipsExpandTrigger="<s-tab>"
-    let g:UltiSnipsJumpForwardTrigger="<s-tab>"
-
-    Plug 'metakirby5/codi.vim'
-    let g:codi#interpreters = {
-                \ 'python': {
-                \ 'bin': 'python3',
-                \ 'prompt': '^\(>>>\|\.\.\.\) ',
-                \ },
-                \ }
-
+    " Autocomplete
+    Plug 'maralla/completor.vim'
+    let g:completor_clang_binary = '/usr/bin/clang'
+    let g:completor_python_binary = '/usr/local/bin/python3'
+    let g:completor_node_binary = '/usr/local/bin/node'
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 call plug#end()
 
 syntax on
@@ -63,6 +36,9 @@ filetype plugin indent on
 " Whitespace characters
 set listchars=tab:⇥\
 set list
+
+" Colours
+colo evening
 
 " Normal backspace and tab
 set backspace=indent,eol,start
@@ -99,10 +75,6 @@ set autoread
 
 set path-=/usr/include
 
-" 80 characters
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
-
 " Remove whitespace
 command! RemoveWhitespace %s/\s\+$//e
 
@@ -126,3 +98,4 @@ autocmd FileType matlab setlocal commentstring=\%\ %s
 if filereadable(".lvimrc")
     source .lvimrc
 endif
+        
