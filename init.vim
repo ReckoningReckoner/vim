@@ -38,7 +38,7 @@ set listchars=tab:⇥\
 set list
 
 " Colours
-colo evening
+colo slate
 
 " Normal backspace and tab
 set backspace=indent,eol,start
@@ -64,7 +64,6 @@ set number
 
 " Searching stuff
 set incsearch
-set cursorline
 
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
